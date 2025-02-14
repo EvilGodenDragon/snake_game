@@ -16,6 +16,10 @@ let gameOver = false;
 let gameSpeed = 100; // 初始速度
 let lastFrameTime = 0;
 
+// 添加触摸事件（在原有键盘事件后追加）
+let touchStartX = 0;
+let touchStartY = 0;
+
 // 生成不会出现在蛇身上的食物
 function generateFood() {
   let newFood;
@@ -139,6 +143,28 @@ document.addEventListener('keydown', (event) => {
     keyActions[event.key]();
   }
 });
+
+canvas.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener('touchmove', (e) => {
+  const touchEndX = e.touches[0].clientX;
+  const touchEndY = e.touches[0].clientY;
+  const dx = touchEndX - touchStartX;
+  const dy = touchEndY - touchStartY;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    if (dx > 0 && direction.x === 0) nextDirection = { x: 1, y: 0 };
+    else if (dx < 0 && direction.x === 0) nextDirection = { x: -1, y: 0 };
+  } else {
+    if (dy > 0 && direction.y === 0) nextDirection = { x: 0, y: 1 };
+    else if (dy < 0 && direction.y === 0) nextDirection = { x: 0, y: -1 };
+  }
+  e.preventDefault();
+}, { passive: false });
 
 // 添加点击重新开始
 canvas.addEventListener('click', () => {
