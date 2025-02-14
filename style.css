@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    min-height: 100vh; /* 确保最小高度撑满视口 */
+    display: flex;
+    flex-direction: column; /* 改为纵向布局 */
+    justify-content: center; /* 垂直居中 */
+    align-items: center; /* 水平居中 */
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 元素间距统一控制 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #333;
+    font-size: 36px;
+    margin: 0; /* 移除默认外边距 */
+}
+
+.score-container {
+    font-size: 24px;
+    color: #333;
+    margin: 0; /* 移除默认外边距 */
+}
+
+canvas {
+    background-color: #000;
+    border: 2px solid #333;
+    border-radius: 10px;
+    display: block; /* 消除 canvas 默认的内联间隙 */
+    margin: 0 auto; /* 水平居中 */
+}
+
+#reset {
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content; /* 根据内容自适应宽度 */
+    margin: 0 auto; /* 水平居中 */
+    transition: all 0.3s ease;
+}
+
+#reset:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+#reset:active {
+    transform: scale(0.95);
+}
